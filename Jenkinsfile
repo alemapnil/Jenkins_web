@@ -29,7 +29,6 @@ pipeline{
         stage('check'){
             steps{
                 sh 'myenv/bin/python --version'
-                
             }
         }
 
@@ -42,7 +41,7 @@ pipeline{
 
         stage('running'){
             steps{
-                sh 'myenv/bin/python manage.py runserver'
+                sh 'myenv/bin/python manage.py runserver 0.0.0.0:8000'
             }
         }
 
