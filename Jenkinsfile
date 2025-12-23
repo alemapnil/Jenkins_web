@@ -9,7 +9,14 @@ pipeline{
                 echo "此為Git上的Jenkinsfile"
                 git branch: 'main', credentialsId: '7c359d4c-fd1b-49df-97df-7867f3e19e0f', url: 'https://github.com/alemapnil/Jenkins_web.git'
                 sh 'pwd'
-                sh 'ls -al'
+            }
+        }
+        stage('virtual'){
+            steps{
+                sh 'sudo apt update'
+                sh 'sudo apt install python3 python3-pip python3-ven'
+                sh 'python3 -m venv myenv'
+                sh 'source myenv/bin/activate'
             }
         }
         
