@@ -8,7 +8,7 @@ pipeline{
             steps{
                 echo "此為Git上的Jenkinsfile"
                 git branch: 'main', credentialsId: '7c359d4c-fd1b-49df-97df-7867f3e19e0f', url: 'https://github.com/alemapnil/Jenkins_web.git'
-                sh 'pwd'
+                bash 'pwd'
             }
         }
         stage('virtual'){
@@ -24,30 +24,28 @@ pipeline{
                 echo "Python 安裝完畢"
                 sh 'python3 -m venv myenv'
                 echo "啟動虛擬環境"
-                sh 'source myenv/bin/activate'
             }
         }
-        
         stage('check'){
             steps{
-                echo "檢查環境安裝"
-                sh "python --version"
-                sh "django-admin --version"
+                sh 'myenv/bin/python --version'
+                sh 'myenv/bin/django-admin --version'
             }
         }
+
         stage('install'){
             steps{
-                echo "要安裝了"
-                sh "python -m pip install Django"
+                sh 'myenv/bin/python -m pip install Django'
             }
         }
+
         stage('running'){
             steps{
-                echo "要跑了..."
-                sh "python manage.py runserver"
-                
+                sh 'myenv/bin/python manage.py runserver'
             }
         }
+
+
     }
     post{
         always{
