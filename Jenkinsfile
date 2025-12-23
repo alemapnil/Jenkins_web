@@ -13,9 +13,17 @@ pipeline{
         }
         stage('virtual'){
             steps{
-                sh 'sudo apt update'
-                sh 'sudo apt install python3 python3-pip python3-ven'
+                sh '''
+                sudo apt update
+                sudo apt install -y \
+                    python3 \
+                    python3-pip \
+                    python3-venv
+                '''
+
+                echo "Python 安裝完畢"
                 sh 'python3 -m venv myenv'
+                echo "啟動虛擬環境"
                 sh 'source myenv/bin/activate'
             }
         }
