@@ -13,12 +13,20 @@ pipeline{
             }
         }
         
-        stage('Build'){
+        stage('check'){
             steps{
-                echo "Build 成功了"
+                echo "檢查環境安裝"
+                sh "python --version"
+                sh "django-admin --version"
             }
         }
-        stage('Deploy'){
+        stage('install'){
+            steps{
+                echo "要安裝了"
+                sh "python -m pip install Django"
+            }
+        }
+        stage('running'){
             steps{
                 echo "要跑了..."
                 sh "python manage.py runserver"
