@@ -29,13 +29,14 @@ pipeline{
         stage('check'){
             steps{
                 sh 'myenv/bin/python --version'
-                sh 'myenv/bin/django-admin --version'
+                
             }
         }
 
         stage('install'){
             steps{
                 sh 'myenv/bin/python -m pip install Django'
+                sh 'myenv/bin/django-admin --version'
             }
         }
 
